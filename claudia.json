@@ -1,0 +1,11 @@
+{
+    "lambda": {
+        "role": "prototype-lambda-executor",
+        "name": "prototype-lambda",
+        "region": "us-east-1"
+    },
+    "api": {
+        "id": "b02u4f4vzf",
+        "module": "app"
+    }
+}

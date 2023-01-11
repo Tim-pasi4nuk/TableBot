@@ -8,7 +8,7 @@ phases:
       - npm install --unsafe-perm
       - find ./node_modules -mtime +10950 -exec touch {} \;
       - pip3 install --upgrade awscli
-      - npm run update_DEV
+      - npm run update
   post_build:
     commands: echo 'done'
 artifacts:
