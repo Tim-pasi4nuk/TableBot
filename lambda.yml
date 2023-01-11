@@ -1,0 +1,17 @@
+version: 0.1
+phases:
+  install:
+    runtime-versions:
+      nodejs: 16
+    commands:
+      - npm install claudia -g
+      - npm install --unsafe-perm
+      - find ./node_modules -mtime +10950 -exec touch {} \;
+      - pip3 install --upgrade awscli
+      - npm run update_DEV
+  post_build:
+    commands: echo 'done'
+artifacts:
+  type: zip
+  files:
+    - "**/*"
