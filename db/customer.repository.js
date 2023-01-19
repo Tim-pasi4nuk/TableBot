@@ -19,10 +19,10 @@ const getCustomer = async (chatId) => {
     return customers;
 };
 
-const updateCustomer = async (status, phone) => {
+const updateCustomer = async (chatId, {status, phone, day, time}) => {
     const db = await database.connectToDatabase();
 
-    const customers = await db.collection('customer').updateOne({chatId:chatId}, {status:status, phone:phone});
+    const customers = await db.collection('customer').updateOne({chatId:chatId}, {status:status, phone:phone, day:day, time:time});
     
     return customers;
 }
