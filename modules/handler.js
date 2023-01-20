@@ -29,11 +29,12 @@ const telegramHandler = async (req) => {
     const message = req.body?.message?.chat?.text
     const phone = req.body?.message.contact.phone_number
     const chatId = req.body.message?.chat?.id
+    const username = req.body.message?.chat?.username
 
     const existingCustomer = await customerRepository.getCustomer(chatId)
     
     if(!existingCustomer) {
-        await customerRepository.addCustomer({...customer,status:ECustomerStatus.sharePhone})
+        await customerRepository.addCustomer({chatId,username,status:ECustomerStatus.sharePhone})
         messageSender.sendMessage(templateJson.greetingMessage, chatId)
         messageSender.sendMessage(templateJson.sharePhone, chatId)
         return {success:true}
