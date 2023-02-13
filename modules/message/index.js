@@ -3,8 +3,8 @@ const config = require('../../configs/index')
 
 const botToken = config.getConfig().botToken;
 
-const sendMessage = (messageTemplate, chat_id) => {
-    telegram.sendToTelegram(botToken, {...messageTemplate, chat_id})
+const sendMessage = async (messageTemplate, chat_id) => {
+    await telegram.sendToTelegram(botToken, {...messageTemplate, chat_id})
 }
 
 module.exports = {

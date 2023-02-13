@@ -8,14 +8,14 @@ const generateDaysArray = () => {
     let days = []
 
     for (let index = 0; index < reservedDayLimit; index++) {
-        let dateNow = new Date.now()
+        let dateNow = new Date(Date.now())
 
         dateNow.setDate(dateNow.getDate() + index)
 
         const currentDay = dateNow.getDate()
         const month = dateNow.getMonth()
 
-        days.push(`${currentDay}.${month}`)
+        days.push(`${currentDay}.${month<10 ? 0 : ''}${month}`)
     }
     
     return days;
@@ -24,19 +24,19 @@ const generateDaysArray = () => {
 const generateDateMessageTemplate = () => {
     const daysArray = generateDaysArray()
 
-    const dateMessageTemplates = daysArray.forEach(day => {
-        return {
+    const dateMessageTemplates = daysArray.map(day => {
+        return [{
             "text": `${day}`,
             "callback_data": `day_${day}`
-        }
+        }]
     });
 
     return { 
         "text": "Choose day for reservation",
         "reply_markup": {
-            "inline_keyboard": {
+            "inline_keyboard": 
                     dateMessageTemplates
-            }
+            
         }
     }
 }
@@ -63,9 +63,9 @@ const generateTimeMessageTemplate = () => {
     return { 
         "text": "Choose time for reservation",
         "reply_markup": {
-            "inline_keyboard": {
+            "inline_keyboard": 
                 timeArray
-            }
+            
         }
     }
 }
